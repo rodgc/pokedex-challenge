@@ -38,7 +38,7 @@ function Pokemons({ pokemons }: Props) {
   return (
     <div className="row">
       {pokemons.map((pokemon: { name: string; id: number; types: [] }) => (
-        <div key={pokemon.id} className="col s12 m4">
+        <div key={pokemon.id} className="col s12 m3">
           <div className="card">
             <div className="card-image">
               <img

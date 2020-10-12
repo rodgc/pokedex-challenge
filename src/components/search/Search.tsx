@@ -54,17 +54,17 @@ function Search() {
     <div className="row">
       <div className="col s12">
         <div className="row">
-          <div className="input-field col s8">
+          <div className="input-field col s10">
             <input
               className="validate"
-              placeholder="Search Pokemon"
+              placeholder="Search Pokemon name or National Dex"
               id="name"
               type="text"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
             />
           </div>
-          <div className="input-field col s2">
+          <div className="input-field col s1">
             <button
               className="waves-effect waves-light btn"
               type="button"
@@ -73,7 +73,7 @@ function Search() {
               Search
             </button>
           </div>
-          <div className="input-field col s2">
+          <div className="input-field col s1">
             <button
               className="waves-effect waves-light btn"
               type="button"
