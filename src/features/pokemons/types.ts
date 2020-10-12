@@ -3,6 +3,7 @@ import {
   REMOVE_FROM_FAVORITE,
   SAVE_POKEMON,
   SAVE_POKEMONS,
+  GET_FAVORITE_FROM_LOCAL_STORAGE,
 } from './actionTypes'
 
 interface SavePokemonsAction {
@@ -25,11 +26,16 @@ interface RemoveFavoritePokemonAction {
   pokemon: { id: number }
 }
 
+interface GetFavoritePokemonsFromLocalStorageAction {
+  type: typeof GET_FAVORITE_FROM_LOCAL_STORAGE
+}
+
 export type PokemonActionTypes =
   | SavePokemonsAction
   | SavePokemonAction
   | AddFavoritePokemonAction
   | RemoveFavoritePokemonAction
+  | GetFavoritePokemonsFromLocalStorageAction
 
 export interface SystemState {
   pokemons: {

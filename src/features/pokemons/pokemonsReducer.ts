@@ -4,6 +4,7 @@ import {
   SAVE_POKEMON,
   REMOVE_FROM_FAVORITE,
   ADD_TO_FAVORITE,
+  GET_FAVORITE_FROM_LOCAL_STORAGE,
 } from './actionTypes'
 import { PokemonActionTypes } from './types'
 
@@ -48,6 +49,13 @@ export default (state = initialState, action: PokemonActionTypes) => {
       return { ...state, pokemons: [...action.pokemons] }
     case SAVE_POKEMON:
       return { ...state, pokemons: [{ ...action.pokemon }] }
+    case GET_FAVORITE_FROM_LOCAL_STORAGE:
+      const localFavorites = localStorage.getItem('favorites')
+      const localFavoritesCopy = `${localFavorites}`
+      return {
+        ...state,
+        favorites: [...JSON.parse(localFavoritesCopy)],
+      }
     default:
       return state
   }
