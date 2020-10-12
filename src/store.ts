@@ -1,10 +1,10 @@
 import { combineReducers, createStore } from 'redux'
 import { devToolsEnhancer } from 'redux-devtools-extension'
-import { CounterReducer } from './features/counter'
+import { PokemonsReducer } from './features/pokemons'
 
 /* Create root reducer, containing all features of the application */
 const rootReducer = combineReducers({
-  count: CounterReducer,
+  pokemons: PokemonsReducer,
 })
 
 const store = createStore(
