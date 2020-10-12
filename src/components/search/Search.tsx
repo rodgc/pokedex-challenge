@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import axios from '../../axios'
 import { actionTypes } from '../../features/pokemons'
@@ -16,7 +16,8 @@ function Search() {
     dispatch({ type: actionTypes.SAVE_POKEMON, pokemon: { ...data } })
   }
 
-  const onSubmit = (): void => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault()
     getPokemon()
   }
 
@@ -53,7 +54,7 @@ function Search() {
   return (
     <div className="row">
       <div className="col s12">
-        <div className="row">
+        <form className="row" onSubmit={onSubmit}>
           <div className="input-field col s10">
             <input
               className="validate"
@@ -65,11 +66,7 @@ function Search() {
             />
           </div>
           <div className="input-field col s1">
-            <button
-              className="waves-effect waves-light btn"
-              type="button"
-              onClick={onSubmit}
-            >
+            <button className="waves-effect waves-light btn" type="submit">
               Search
             </button>
           </div>
@@ -82,7 +79,7 @@ function Search() {
               Reset
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   )
