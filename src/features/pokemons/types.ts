@@ -17,12 +17,12 @@ interface SavePokemonAction {
 
 interface AddFavoritePokemonAction {
   type: typeof ADD_TO_FAVORITE
-  pokemon: {}
+  pokemon: { id: number }
 }
 
 interface RemoveFavoritePokemonAction {
   type: typeof REMOVE_FROM_FAVORITE
-  pokemon: {}
+  pokemon: { id: number }
 }
 
 export type PokemonActionTypes =

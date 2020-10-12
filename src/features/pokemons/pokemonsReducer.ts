@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import {
   SAVE_POKEMONS,
   SAVE_POKEMON,
@@ -14,12 +15,35 @@ const initialState = {
 export default (state = initialState, action: PokemonActionTypes) => {
   switch (action.type) {
     case ADD_TO_FAVORITE:
+      const isFavorite = state.favorites.find(
+        (pokemon: { id: number }) => pokemon.id === action.pokemon.id,
+      )
+
+      const newFavorites = [...state.favorites, { ...action.pokemon }]
+
+      if (isFavorite) {
+        return state
+      }
+
+      localStorage.setItem('favorites', JSON.stringify([...newFavorites]))
       return {
         ...state,
-        favorites: [{ ...action.pokemon }, ...state.favorites],
+        favorites: [...newFavorites],
       }
+
     case REMOVE_FROM_FAVORITE:
-      return { ...state, favorites: [{ ...action.pokemon }] }
+      const favorites = JSON.parse(JSON.stringify([...state.favorites]))
+
+      const [pokemonInArray] = favorites.filter(
+        (_pokemon: { id: number }) => _pokemon.id === action.pokemon.id,
+      )
+
+      const idx = favorites.indexOf(pokemonInArray)
+
+      favorites.splice(idx, 1)
+
+      localStorage.setItem('favorites', JSON.stringify([...favorites]))
+      return { ...state, favorites: [...favorites] }
     case SAVE_POKEMONS:
       return { ...state, pokemons: [...action.pokemons] }
     case SAVE_POKEMON:
