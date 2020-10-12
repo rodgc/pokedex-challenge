@@ -15,10 +15,14 @@ function Pokemons({ pokemons }: Props) {
 
   return (
     <div className="row">
-      {pokemons.map((pokemon: { name: string }) => (
+      {pokemons.map((pokemon: { name: string; id: number }) => (
         <div key={pokemon.name} className="col s12 m4">
           <div className="card">
             <div className="card-image">
+              <img
+                src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
+                alt={pokemon.name}
+              />
               <button
                 className="btn-floating halfway-fab waves-effect waves-light red"
                 type="button"
@@ -27,7 +31,9 @@ function Pokemons({ pokemons }: Props) {
                 <i className="material-icons">favorite</i>
               </button>
             </div>
-            <div className="card-content">{pokemon.name}</div>
+            <div className="card-content">
+              <span className="card-title">{pokemon.name}</span>
+            </div>
           </div>
         </div>
       ))}
