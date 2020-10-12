@@ -21,6 +21,7 @@ function Search() {
   }
 
   const getInitialPokemons = async () => {
+    let pokemons: Array<Object> = []
     const {
       data: { results },
     } = await axios({
@@ -28,7 +29,19 @@ function Search() {
       url: `/pokemon?limit=150`,
     })
 
-    dispatch({ type: actionTypes.SAVE_POKEMONS, pokemons: [...results] })
+    pokemons = results.map(async (pokemon: { name: string; url: string }) => {
+      const [, pokemonId] = pokemon.url.split('/pokemon/')
+      const { data } = await axios({
+        method: 'get',
+        url: `/pokemon/${pokemonId}`,
+      })
+      return data
+    })
+
+    Promise.all(pokemons).then((_pokemons) => {
+      dispatch({ type: actionTypes.SAVE_POKEMONS, pokemons: [..._pokemons] })
+    })
+
     setSearchValue('')
   }
 
