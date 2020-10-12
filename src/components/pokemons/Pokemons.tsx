@@ -25,10 +25,20 @@ function Pokemons({ pokemons }: Props) {
 
     return pokemon.length > 0
   }
+
+  const getPokemonTypes = (types: []) => {
+    const typesList: any[] = []
+    types.forEach((_types: { type: { name: string } }) =>
+      typesList.push(_types.type.name),
+    )
+
+    return typesList.join(' & ')
+  }
+
   return (
     <div className="row">
-      {pokemons.map((pokemon: { name: string; id: number }) => (
-        <div key={pokemon.name} className="col s12 m4">
+      {pokemons.map((pokemon: { name: string; id: number; types: [] }) => (
+        <div key={pokemon.id} className="col s12 m4">
           <div className="card">
             <div className="card-image">
               <img
@@ -55,6 +65,8 @@ function Pokemons({ pokemons }: Props) {
             </div>
             <div className="card-content">
               <span className="card-title">{pokemon.name}</span>
+              <p>National Dex: {pokemon.id} </p>
+              <p>Type: {getPokemonTypes(pokemon.types)} </p>
             </div>
           </div>
         </div>
