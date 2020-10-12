@@ -51,7 +51,7 @@ export default (state = initialState, action: PokemonActionTypes) => {
       return { ...state, pokemons: [{ ...action.pokemon }] }
     case GET_FAVORITE_FROM_LOCAL_STORAGE:
       const localFavorites = localStorage.getItem('favorites')
-      const localFavoritesCopy = JSON.parse(`${localFavorites}`)
+      const localFavoritesCopy = JSON.parse(`${localFavorites}`) || []
       return {
         ...state,
         favorites: [...localFavoritesCopy],
