@@ -1,20 +1,20 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { actionTypes, selectors } from '../../features/pokemons'
+import { actionTypes, Pokemon, selectors } from '../../features/pokemons'
 
 interface Props {
-  pokemons: []
+  pokemons: Pokemon[]
 }
 
 function Pokemons({ pokemons }: Props) {
   const favoritesPokemons = useSelector(selectors.getFavoritesPokemons)
   const dispatch = useDispatch()
 
-  const onFavorite = (pokemon: any) => {
+  const onFavorite = (pokemon: Pokemon) => {
     dispatch({ type: actionTypes.ADD_TO_FAVORITE, pokemon })
   }
 
-  const onRemoveFavorite = (pokemon: any) => {
+  const onRemoveFavorite = (pokemon: Pokemon) => {
     dispatch({ type: actionTypes.REMOVE_FROM_FAVORITE, pokemon })
   }
 
@@ -26,7 +26,7 @@ function Pokemons({ pokemons }: Props) {
     return pokemon.length > 0
   }
 
-  const getPokemonTypes = (types: []) => {
+  const getPokemonTypes = (types: Pokemon['types']) => {
     const typesList: any[] = []
     types.forEach((_types: { type: { name: string } }) =>
       typesList.push(_types.type.name),
@@ -37,7 +37,7 @@ function Pokemons({ pokemons }: Props) {
 
   return (
     <div className="row">
-      {pokemons.map((pokemon: { name: string; id: number; types: [] }) => (
+      {pokemons.map((pokemon: Pokemon) => (
         <div key={pokemon.id} className="col s12 m3">
           <div className="card">
             <div className="card-image">

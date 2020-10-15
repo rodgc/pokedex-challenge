@@ -4,3 +4,4 @@ import * as selectors from './selectors'
 export { default as PokemonsReducer } from './pokemonsReducer'
 export { actionTypes }
 export { selectors }
+export type { Pokemon } from './pokemon'

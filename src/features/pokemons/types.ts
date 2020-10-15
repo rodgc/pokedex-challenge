@@ -5,25 +5,26 @@ import {
   SAVE_POKEMONS,
   GET_FAVORITE_FROM_LOCAL_STORAGE,
 } from './actionTypes'
+import { Pokemon } from './pokemon'
 
 interface SavePokemonsAction {
   type: typeof SAVE_POKEMONS
-  pokemons: []
+  pokemons: Pokemon[]
 }
 
 interface SavePokemonAction {
   type: typeof SAVE_POKEMON
-  pokemon: []
+  pokemon: Pokemon[]
 }
 
 interface AddFavoritePokemonAction {
   type: typeof ADD_TO_FAVORITE
-  pokemon: { id: number }
+  pokemon: Pokemon
 }
 
 interface RemoveFavoritePokemonAction {
   type: typeof REMOVE_FROM_FAVORITE
-  pokemon: { id: number }
+  pokemon: Pokemon
 }
 
 interface GetFavoritePokemonsFromLocalStorageAction {
