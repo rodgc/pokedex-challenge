@@ -41,10 +41,7 @@ function Pokemons({ pokemons }: Props) {
         <div key={pokemon.id} className="col s12 m3">
           <div className="card">
             <div className="card-image">
-              <img
-                src={`https://pokeres.bastionbot.org/images/pokemon/${pokemon.id}.png`}
-                alt={pokemon.name}
-              />
+              <img src={pokemon.sprites.front_default} alt={pokemon.name} />
               {isFavorite(pokemon.id) ? (
                 <button
                   className="btn-floating halfway-fab waves-effect waves-light red"
